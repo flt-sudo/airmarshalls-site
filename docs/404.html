@@ -82,8 +82,26 @@
   <a class="btn text" href="tel:3182885363">Text 318-288-5363</a>
 </div>
 <script>
-function amSend(f){var b=[];for(var i=0;i<f.elements.length;i++){var e=f.elements[i];if(e.name&&e.value)b.push(e.name+": "+e.value);}
-location.href="mailto:federalassessor@aol.com?subject="+encodeURIComponent("Website inquiry - "+(f.elements["Name"]?f.elements["Name"].value:""))+"&body="+encodeURIComponent(b.join("\n"));return false;}
+// Contact forms post into the Air Marshalls portal as PRIORITY leads. If the
+// portal can't be reached, fall back to opening the visitor's email app so a
+// message is never lost.
+var AM_PORTAL="https://airmarshalls-portal.vercel.app/api/leads/web";
+function amMailto(f){var b=[];for(var i=0;i<f.elements.length;i++){var e=f.elements[i];if(e.name&&e.value&&e.name!=="company_website")b.push(e.name+": "+e.value);}
+location.href="mailto:federalassessor@aol.com?subject="+encodeURIComponent("Website inquiry - "+(f.elements["Name"]?f.elements["Name"].value:""))+"&body="+encodeURIComponent(b.join("\n"));}
+function amSend(f){
+  var btn=f.querySelector("button[type=submit]"),note=f.querySelector(".note");
+  var g=function(n){return f.elements[n]?f.elements[n].value:"";};
+  var body={name:g("Name"),email:g("Email"),phone:g("Phone"),address:g("Address"),bestTime:g("Best time to contact"),type:g("Type"),comments:g("Comments"),page:(location.pathname.split("/").pop()||"index.html").replace(".html","")||"home",company_website:g("company_website")};
+  if(!body.name||(!body.email&&!body.phone)){if(note)note.textContent="Please add your name and a phone number or email.";return false;}
+  if(btn){btn.disabled=true;btn.textContent="Sending…";}
+  fetch(AM_PORTAL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+    .then(function(r){return r.json().then(function(j){return {ok:r.ok&&j&&j.success,j:j};});})
+    .then(function(res){
+      if(res.ok){f.innerHTML='<p class="b green" style="font-size:17px">Thank you. We have your message and a consultant will contact you shortly.</p><p>Need us sooner? Call <a href="tel:8558257770">855-825-7770</a> or text <a href="tel:3182885363">318-288-5363</a>.</p>';}
+      else{if(btn){btn.disabled=false;btn.textContent="Submit";}if(note)note.textContent=(res.j&&res.j.error)||"Could not send. Opening your email app instead…";if(!(res.j&&res.j.error))amMailto(f);}
+    })
+    .catch(function(){if(btn){btn.disabled=false;btn.textContent="Submit";}if(note)note.textContent="Could not reach us online. Opening your email app instead…";amMailto(f);});
+  return false;}
 </script>
 </body>
 </html>

@@ -80,18 +80,36 @@ TEL1='<a class="tel" style="text-decoration:none;color:inherit" href="tel:855825
 TEL2='<a class="tel red" style="text-decoration:none" href="tel:3182885363">318-288-5363</a>'
 MAIL='<a href="mailto:federalassessor@aol.com">federalassessor@aol.com</a>'
 FORM_JS='''<script>
-function amSend(f){var b=[];for(var i=0;i<f.elements.length;i++){var e=f.elements[i];if(e.name&&e.value)b.push(e.name+": "+e.value);}
-location.href="mailto:federalassessor@aol.com?subject="+encodeURIComponent("Website inquiry - "+(f.elements["Name"]?f.elements["Name"].value:""))+"&body="+encodeURIComponent(b.join("\\n"));return false;}
+// Contact forms post into the Air Marshalls portal as PRIORITY leads. If the
+// portal can't be reached, fall back to opening the visitor's email app so a
+// message is never lost.
+var AM_PORTAL="https://airmarshalls-portal.vercel.app/api/leads/web";
+function amMailto(f){var b=[];for(var i=0;i<f.elements.length;i++){var e=f.elements[i];if(e.name&&e.value&&e.name!=="company_website")b.push(e.name+": "+e.value);}
+location.href="mailto:federalassessor@aol.com?subject="+encodeURIComponent("Website inquiry - "+(f.elements["Name"]?f.elements["Name"].value:""))+"&body="+encodeURIComponent(b.join("\\n"));}
+function amSend(f){
+  var btn=f.querySelector("button[type=submit]"),note=f.querySelector(".note");
+  var g=function(n){return f.elements[n]?f.elements[n].value:"";};
+  var body={name:g("Name"),email:g("Email"),phone:g("Phone"),address:g("Address"),bestTime:g("Best time to contact"),type:g("Type"),comments:g("Comments"),page:(location.pathname.split("/").pop()||"index.html").replace(".html","")||"home",company_website:g("company_website")};
+  if(!body.name||(!body.email&&!body.phone)){if(note)note.textContent="Please add your name and a phone number or email.";return false;}
+  if(btn){btn.disabled=true;btn.textContent="Sending…";}
+  fetch(AM_PORTAL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+    .then(function(r){return r.json().then(function(j){return {ok:r.ok&&j&&j.success,j:j};});})
+    .then(function(res){
+      if(res.ok){f.innerHTML='<p class="b green" style="font-size:17px">Thank you. We have your message and a consultant will contact you shortly.</p><p>Need us sooner? Call <a href="tel:8558257770">855-825-7770</a> or text <a href="tel:3182885363">318-288-5363</a>.</p>';}
+      else{if(btn){btn.disabled=false;btn.textContent="Submit";}if(note)note.textContent=(res.j&&res.j.error)||"Could not send. Opening your email app instead…";if(!(res.j&&res.j.error))amMailto(f);}
+    })
+    .catch(function(){if(btn){btn.disabled=false;btn.textContent="Submit";}if(note)note.textContent="Could not reach us online. Opening your email app instead…";amMailto(f);});
+  return false;}
 </script>'''
 def form(fields):
-    h='<form class="form" onsubmit="return amSend(this)">'
+    h='<form class="form" onsubmit="return amSend(this)"><input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;width:0;opacity:0">'
     for n in fields:
         if n=='Comments': h+=f'<label>{n} :</label><textarea name="{n}"></textarea>'
         elif n=='Type': h+=f'<label>{n} :</label><select name="{n}"><option></option><option>Residential</option><option>Commercial</option><option>Industrial</option><option>Other</option></select>'
         else:
             t="email" if n=="Email" else "tel" if n=="Phone" else "text"
             h+=f'<label>{n} :</label><input name="{n}" type="{t}">'
-    h+='<button class="btn call" type="submit">Submit</button><div class="note">Sends from your own email app to federalassessor@aol.com.</div></form>'
+    h+='<button class="btn call" type="submit">Submit</button><div class="note">Goes straight to our office. We reply by phone or email.</div></form>'
     return h
 CALLUS=f'''<div class="callus"><div class="t">Call Us Today!</div>Office: {TEL1}<br><span class="red b">Direct / Text: {TEL2}</span><br>Fax: 855-458-9469<br>email: {MAIL}</div>'''
 TELL='<a class="tell" href="https://www.youtube.com/watch?v=1Jl-C5-OQ5M">Click here<br>And I will<br>Tell You More!</a>'
