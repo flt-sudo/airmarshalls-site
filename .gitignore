@@ -1,0 +1,8 @@
+compare/
+img/
+*-orig.html
+*-text.txt
+imglist.txt
+dbg.html
+_tmp.jpg
+.DS_Store

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services - Air Marshalls Environmental</title>
+<style>
+  :root{
+    --green:#3f9c2d; --green-dark:#2f7a22; --red:#b91806; --blue:#1a3fb5; --link:#1a3fb5;
+    --ink:#111; --grey:#5a5a5a; --callout:#b6eefc; --callout-ink:#0b3a4a; --rule:#d9dee6; --paper:#fff;
+  }
+  *{box-sizing:border-box;min-width:0}
+  img,iframe{max-width:100%}
+  html,body{margin:0;padding:0}
+  body{font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.6;color:var(--ink);background:#f4f7fb;overflow-wrap:anywhere}
+  a{color:var(--link)}
+  h1,h2,h3,h4,p,ul{margin:0}
+  p{margin:0 0 14px}
+  .red{color:var(--red)} .green{color:var(--green)} .grey{color:var(--grey)} .b{font-weight:bold}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 16px}
+  .tel{white-space:nowrap}
+
+  /* ---------- sky header ---------- */
+  .sky{background:#fff url(img/bg.jpg) repeat-x top center;border-bottom:1px solid var(--rule)}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0 12px}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+  .brand img{height:96px;width:auto;display:block}
+  .brand .name{display:none}
+  .contact{text-align:right;line-height:1.35}
+  .contact .who{font-weight:bold;color:var(--blue)}
+  .contact .mail{font-size:15px}
+  .btns{display:flex;gap:8px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:9px 14px;border-radius:5px;font-weight:bold;text-decoration:none;font-size:15px;border:1px solid transparent}
+  .btn.call{background:var(--blue);color:#fff}
+  .btn.text{background:#fff;color:var(--red);border-color:var(--red)}
+  .rated{font-size:14px;color:var(--green);font-weight:bold;margin-top:6px}
+  .rated .red{color:var(--red)}
+
+  nav{background:#fff;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  nav ul{list-style:none;display:flex;gap:2px;padding:0;margin:0;overflow-x:auto}
+  nav a{display:block;padding:12px 16px 12px 36px;font-weight:bold;color:var(--green);text-decoration:none;white-space:nowrap;
+        background:url(img/nav_star.png) no-repeat 12px center;background-size:18px 18px;border-bottom:3px solid transparent}
+  nav a:hover{color:var(--blue)}
+  nav a.here{color:var(--blue);border-bottom-color:var(--blue)}
+
+  /* ---------- his callouts, as one tidy row ---------- */
+  .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 0 0}
+  .chip{background:var(--callout);border-radius:6px;padding:10px 14px;color:var(--callout-ink);line-height:1.35}
+  .chip b{display:block;font-size:18px}
+  .chip b.red{color:var(--red)} .chip b.green{color:var(--green-dark)} .chip b.blue{color:var(--blue)}
+  .chip small{font-size:14px;font-weight:bold}
+  .chip.ir{display:flex;align-items:center;gap:10px}
+  .chip.ir img{height:60px;width:auto;border-radius:3px}
+  .tagline{padding:12px 0 18px;font-weight:bold}
+  .tagline .u{color:var(--red);text-decoration:underline}
+  .vids{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 0 20px}
+  .video{aspect-ratio:16/9;background:#000;border-radius:6px;overflow:hidden;border:1px solid var(--rule)}
+  .video iframe{width:100%;height:100%;border:0;display:block}
+
+  /* ---------- body ---------- */
+  .layout{display:grid;grid-template-columns:1fr 250px;gap:24px;padding:24px 0 32px;align-items:start}
+  .card{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:26px 30px}
+  .kicker{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;font-size:14px;color:var(--grey);margin-bottom:8px}
+  .kicker b{color:var(--ink)}
+  h1{color:var(--green);font-size:34px;line-height:1.15;margin:0 0 14px}
+  h2{color:var(--green);font-size:24px;margin:26px 0 8px}
+  h3{font-size:17px;font-weight:bold;text-transform:uppercase;letter-spacing:.02em;margin:24px 0 6px;color:#222}
+  .lead{font-size:18px}
+
+  .services{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;margin:8px 0 6px}
+  .services ul{columns:1;padding-left:22px;margin:0}
+  .services li{margin:3px 0;padding-left:2px}
+  .services li::marker{color:var(--green)}
+  .services li.hot{color:var(--red);font-weight:bold}
+  .services .motto{font-style:italic;font-weight:bold;margin-top:10px}
+  .photos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .photos figure{margin:0}
+  .photos img{width:100%;height:auto;display:block;border-radius:4px;border:1px solid var(--rule)}
+  .photos .wide{grid-column:1/-1}
+  .photos figcaption{font-size:13px;color:var(--grey);line-height:1.35;padding-top:3px}
+
+  .banner{color:var(--red);font-weight:bold;font-size:20px;text-align:center;margin:22px 0 4px}
+  .closing{margin-top:20px;border-top:1px solid var(--rule);padding-top:16px}
+  .closing p{margin-bottom:6px}
+
+  /* ---------- sidebar (his rail, moved right) ---------- */
+  .side .card{padding:18px 18px}
+  .side .licensed{color:var(--red);font-weight:bold;text-align:center;font-size:16px;margin-bottom:10px}
+  .side .logo{display:block;width:150px;margin:0 auto 10px}
+  .side .tell{display:block;text-align:center;font-size:17px;line-height:1.35;margin-bottom:14px}
+  .side .lady{display:block;width:120px;margin:0 auto 10px;border-radius:4px;border:1px solid var(--rule)}
+  .side .callus{font-size:15px;line-height:1.55}
+  .side .callus .t{color:var(--blue);font-weight:bold;font-style:italic;font-size:17px}
+  .side .video{margin:12px 0 0}
+  .side .irimg{display:block;width:100%;border-radius:4px;border:1px solid var(--rule);margin-top:12px}
+
+  /* ---------- credentials + footer ---------- */
+  .creds{background:#fff;border-top:1px solid var(--rule);padding:22px 0 18px}
+  .creds h4{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin:0 0 12px}
+  .seals{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
+  .seals img{height:54px;width:auto;display:block}
+  .seals img.sm{height:44px}
+  .creds .nums{margin-top:14px;font-size:15px;color:var(--grey)}
+  .creds .nums b{color:var(--ink)}
+  .foot{padding:16px 0 90px;font-size:14px;color:var(--grey);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+  .foot .line{font-weight:bold;font-style:italic;color:var(--blue)}
+  .foot .line .red{font-style:normal}
+
+  /* ---------- phone ---------- */
+  .callbar{display:none}
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr}
+    .services{grid-template-columns:1fr}
+    .chips{grid-template-columns:1fr 1fr}
+    .vids{grid-template-columns:1fr 1fr}
+    .card{padding:20px 18px}
+  }
+  @media (max-width:560px){
+    .top{flex-direction:column;align-items:flex-start;gap:12px}
+    .brand img{height:80px}
+    .contact{text-align:left}
+    .btns{justify-content:flex-start}
+    .chips{grid-template-columns:1fr}
+    .vids{grid-template-columns:1fr}
+    h1{font-size:28px}
+    .callbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;padding:10px 12px;background:#fff;border-top:1px solid var(--rule);z-index:9}
+    .callbar .btn{text-align:center}
+    .foot{padding-bottom:110px}
+  }
+</style>
+</head>
+<body>
+
+<div class="sky">
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="index.html"><img src="img/logo_big.jpg" alt="Air Marshalls Environmental - The Highest Quality Sampling"></a>
+      <div class="contact">
+        <div class="who">Federal Assessor</div>
+        <div class="mail"><a href="mailto:federalassessor@aol.com">federalassessor@aol.com</a></div>
+        <div class="btns">
+          <a class="btn call tel" href="tel:8558257770">Call 855-825-7770</a>
+          <a class="btn text tel" href="tel:3182885363">Direct / Text 318-288-5363</a>
+        </div>
+        <div class="rated">We are <span class="red">A+ Five "5" Star</span> Rated! &nbsp;·&nbsp; Licensed and Insured</div>
+      </div>
+    </div>
+  </div>
+  <nav><div class="wrap"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="here">Services</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="about_mold.html">About Mold</a></li>
+    <li><a href="partner.html">Partners</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul></div></nav>
+</div>
+
+<div class="wrap">
+  <div class="chips">
+    <div class="chip"><b class="red">Asbestos</b><small>Non-Friable &amp; Friable Assessment Inspection Sampling.</small></div>
+    <div class="chip"><b class="green">METH</b><small>Methamphetamine Air &amp; surface Sampling.</small></div>
+    <div class="chip"><b class="green">LEED</b><small>Credit 3.2 Indoor Air Quality Test Sampling.</small></div>
+    <div class="chip ir"><img src="img/Copy_of_IR_camera.jpg" alt="Infrared camera with Fusion Technology"><span><b class="green" style="font-size:16px">Free infrared inspections!</b><small>Call Us Now! &nbsp;Infrared Camera w/ Fusion Technology</small></span></div>
+  </div>
+  <p class="tagline"><span class="u">RADON</span>, Soil Gas, Industrial Indoor Air Quality Exposure Assessment Sampling.</p>
+  <div class="vids">
+    <div class="video"><iframe src="https://www.youtube.com/embed/1Jl-C5-OQ5M?rel=0" title="2017 Air Marshalls" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video"><iframe src="https://www.youtube.com/embed/_JqlIKHHrag?rel=0" title="Indoor Air Pollution" allowfullscreen loading="lazy"></iframe></div>
+    <div class="video"><iframe src="https://www.youtube.com/embed/1UCt2Y21LX0?rel=0" title="Chinese Drywall" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+</div>
+
+<div class="wrap layout">
+  <main class="card">
+    <div class="kicker">
+      <span><b>Text Us At:</b> <a class="tel" style="text-decoration:none;color:inherit" href="tel:3182885363">318-288-5363</a></span>
+      <span><b>Industrial Hygiene / Machine Working Fluid</b> &nbsp;LICENSED CERTIFIED Indoor Air Quality CONSULTING.</span>
+    </div>
+    <h1>Services</h1>
+    <p class="lead"><b>Consulting</b> - We can provide solutions and preventive measures as we assess your structure's damage. We perform Air and Surface sampling to accurately identify the species of Mold, Toxic or Non-toxic. We also provide written reports in support of your Mold case and our findings. We identify the cause and offer the solution in writing to your Mold (Indoor Air Quality) problem and concerns. No job is too big or too small.</p>
+
+    <div class="services">
+      <div>
+        <ul>
+          <li>Indoor Air Quality Assessment/Sampling</li>
+          <li>LEED Credit Indoor Air Quality Sampling</li>
+          <li class="hot">Sewage Contamination Sampling</li>
+          <li>Asbestos Assessment Inspection Sampling</li>
+          <li>Volatile Organic Compound Sampling (VOC's)</li>
+          <li>Hexavalent Chromium CR(VI)</li>
+          <li>Crystalline Silica (Cristobalite &amp; Tridymite)</li>
+          <li>Chinese Drywall Inspection Assessment Sampling (PPM &amp; PPB)</li>
+          <li>IR - Fusion Technology Infrared Moisture Detection Inspections</li>
+          <li>Thermal (Infrared) Inspections &amp; Imagery</li>
+          <li>Radon and Methane Gas Sampling</li>
+          <li>Soil Gas Sampling</li>
+          <li>Formaldehyde Sampling</li>
+          <li>Mold Identification and Preventative measures</li>
+          <li>Environmental Site Assessments condition 1, 2, 3</li>
+          <li>Systematic Investigations, Expert Testimony</li>
+          <li>Forensics - Cause, Effect, and Origin</li>
+          <li>Legionella Sampling</li>
+          <li>Licensed Professional Consultation</li>
+          <li>Visual Inspections</li>
+          <li>Industrial Air Sampling &amp; Assessments</li>
+          <li class="hot">24/7 Emergency Response</li>
+        </ul>
+        <p class="motto">"WE Go The Extra Mile...with a Smile!"</p>
+      </div>
+      <div class="photos">
+        <figure><img src="img/services_element26.jpg" alt="Thermal image showing hidden moisture"><figcaption>Thermal image: hidden moisture</figcaption></figure>
+        <figure><img src="img/services_element25.jpg" alt="Moisture meter reading on a wall"><figcaption>Moisture meter reading</figcaption></figure>
+        <figure><img src="img/services_element27.jpg" alt="Lab analysis under the microscope"><figcaption>Lab analysis</figcaption></figure>
+        <figure><img src="img/services_element28.jpg" alt="Mold Check"><figcaption>Mold check</figcaption></figure>
+        <figure class="wide"><img src="img/full_Chinese_Dry_Wall_pic_1.jpg" alt="Black copper piping caused by Chinese drywall off-gassing"><figcaption class="b red">Black Copper piping caused by Chinese Dry Wall "Off Gassing"</figcaption></figure>
+      </div>
+    </div>
+
+    <h3>Certified Indoor Air Quality &amp; Mold Sampling / Inspections</h3>
+    <p>We are licensed and can provide solutions and preventive measures as we assess your structure's damage. We perform Air and Surface sampling to accurately identify the species of mold, toxic or non-toxic. We also provide written reports in support of your Indoor Air Quality case and our findings. We identify the cause and offer the solution in writing to your Indoor Air Quality problem and concerns. No job is too big or too small.</p>
+
+    <h3>Indoor Air Quality, Asbestos, LEED, Mold and Moisture Sampling / Inspections / Assessments</h3>
+    <p>Highly specialized Indoor Air Quality, Mold and moisture sampling/inspections are recommended when more significant complex contaminant situations are believed to be present in a structure. These specialized sampling/inspections are performed in cases where health concerns are believed to be directly related to poor Indoor Air quality. Also, highly specialized Mold and moisture inspections are strongly recommended during real estate transactions, and legal concerns between the buyer/seller, tenant/landlord, or insured property owner and the insurance company.</p>
+
+    <h3>Thermal Imaging</h3>
+    <p>Infrared Thermal Imaging affords us the ability to discover hidden moisture areas and areas of energy loss. Thermal imaging is a major systematic fact finding instrument in a structure investigation. Although impossible to see with the naked eye, these hidden conditions, if not detected, could cause serious structural damage, and Mold growth that could cause Mold related health issues.</p>
+
+    <div class="banner">LICENSED &amp; INSURED!</div>
+
+    <h3>Forensics (Cause &amp; Origin)</h3>
+    <p>We will look high, low and wide to find the facts of your moisture and/or Indoor Air Quality, Mold problem. No job is too big or too small, and we can provide a solution in writing.</p>
+
+    <h3>Residential - Commercial - Asbestos, Industrial Hygiene / Machine Working Fluid Indoor Air Quality Sampling</h3>
+    <p>We provide LEED, Indoor Air Quality, licensed Mold Assessments / Sampling / inspections servicing homes, offices, and industrial properties. <b>Grade "D" Breathable Compressed Air - Asbestos - Soil Gas - Radon - Methane Sampling.</b></p>
+
+    <h3>Professional Licensed Insured Friendly and Prompt Services</h3>
+    <p>Contact us today for a consultation and to receive more information related to your personal assessment.</p>
+
+    <div class="closing">
+      <p class="b" style="font-style:italic;color:var(--blue)">Air Marshalls Environmental Professionals</p>
+      <p class="b red">Office: <a class="tel red" style="text-decoration:none" href="tel:8558257770">855-825-7770</a> or Direct/Text: <a class="tel red" style="text-decoration:none" href="tel:3182885363">318-288-5363</a></p>
+      <p class="b">We use Accredited Laboratory services Only!</p>
+      <p class="b"><span class="green">LICENSED Certified and Qualified Indoor Air Quality Consultants</span> &nbsp;·&nbsp; <span style="color:var(--blue)">Court Recognized IAQ Expert &amp; Industrial Hygienist</span></p>
+      <p>Air Marshalls Environmental Consultants can provide solutions, assessments and preventative methods. Our Indoor Air Quality inspectors are licensed, certified and able to DRAFT a remediation protocol.</p>
+    </div>
+  </main>
+
+  <aside class="side">
+    <div class="card">
+      <div class="licensed">LICENSED &amp; INSURED!</div>
+      <img class="logo" src="img/logo_big.jpg" alt="Air Marshalls Environmental">
+      <a class="tell" href="https://www.youtube.com/watch?v=1Jl-C5-OQ5M">Click here<br>And I will<br>Tell You More!</a>
+      <img class="lady" src="img/Call_Lady.jpg" alt="Call us">
+      <div class="callus">
+        <div class="t">Call Us Today!</div>
+        Office: <a class="tel" style="text-decoration:none;color:inherit" href="tel:8558257770">855-825-7770</a><br>
+        <span class="red b">Direct: <a class="tel red" style="text-decoration:none" href="tel:3182885363">318-288-5363</a></span><br>
+        Fax: 855-458-9469<br>
+        email: <a href="mailto:federalassessor@aol.com">federalassessor@aol.com</a>
+      </div>
+      <div class="video"><iframe src="https://www.youtube.com/embed/gciSp5X40t0?rel=0" title="An Introduction - Louisiana DEQ" allowfullscreen loading="lazy"></iframe></div>
+      <img class="irimg" src="img/services_element26.jpg" alt="Thermal image: tested wet, high moisture reading">
+      <div class="video"><iframe src="https://www.youtube.com/embed/MgAu5U9Fxc4?rel=0" title="Black Mold" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </aside>
+</div>
+
+<div class="creds">
+  <div class="wrap">
+    <h4>Licensed · Certified · Accredited</h4>
+    <div class="seals">
+      <img src="img/seal_namp.jpg" alt="Certified NAMP - National Association of Mold Professionals">
+      <img src="img/seal_bbb.jpg" alt="BBB Accredited Business">
+      <img src="img/seal_iicrc.jpg" alt="Institute of Inspection Cleaning and Restoration Certification">
+      <img src="img/seal_servicemagic.jpg" alt="Service Magic Seal of Approval">
+      <img class="sm" src="img/seal_osha_epa_cdc.jpg" alt="OSHA, EPA, CDC">
+      <img class="sm" src="img/seal_angies.jpg" alt="Angie's List">
+      <img class="sm" src="img/seal_cards.jpg" alt="MasterCard, Visa, Discover, American Express accepted">
+    </div>
+    <div class="nums"><b>License # MAC 1247</b> &nbsp;·&nbsp; <b>NAMP Certified Member #1166</b> &nbsp;·&nbsp; Accredited independent laboratory services only &nbsp;·&nbsp; Written assessments within days</div>
+  </div>
+</div>
+<div class="wrap foot">
+  <span class="line">Air Marshalls Environmental Professionals &nbsp; <span class="red">Office: 855-825-7770 or Direct/Text: 318-288-5363</span></span>
+  <span>&copy; 2010 Air Marshalls Environmental. All Rights Reserved. &nbsp;·&nbsp; Website Designed by Ricky R Calhoun &copy; 2022</span>
+</div>
+
+<div class="callbar">
+  <a class="btn call" href="tel:8558257770">Call 855-825-7770</a>
+  <a class="btn text" href="tel:3182885363">Text 318-288-5363</a>
+</div>
+</body>
+</html>
